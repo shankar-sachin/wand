@@ -20,3 +20,6 @@ Wand.xcodeproj/
 *.log
 *.ipa
 *.dSYM
+
+# Claude Code
+CLAUDE.md
