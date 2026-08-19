@@ -1,0 +1,75 @@
+name: Wand
+options:
+  bundleIdPrefix: com.sachi
+  deploymentTarget:
+    iOS: "26.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    DEVELOPMENT_TEAM: ""
+    CODE_SIGN_STYLE: Automatic
+    TARGETED_DEVICE_FAMILY: "1"
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+    SWIFT_EMIT_LOC_STRINGS: YES
+
+targets:
+  Wand:
+    type: application
+    platform: iOS
+    sources:
+      - path: Wand
+    # Machine-specific settings (notably DEVELOPMENT_TEAM for device builds) live here so
+    # they survive `xcodegen generate`, which rewrites the project from this file.
+    configFiles:
+      Debug: Config/Local.xcconfig
+      Release: Config/Local.xcconfig
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.sachi.wand
+        PRODUCT_NAME: Wand
+        MARKETING_VERSION: "1.0.0"
+        CURRENT_PROJECT_VERSION: "1"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Wand
+        SWIFT_APPROACHABLE_CONCURRENCY: YES
+        ENABLE_PREVIEWS: YES
+    info:
+      path: Wand/Info.plist
+      properties:
+        UILaunchScreen: {}
+        CFBundleSpokenName: Wand
+        # Discovery and control talk directly to TVs on the local network.
+        NSLocalNetworkUsageDescription: "Wand finds your Samsung TVs on this Wi-Fi network so it can pair with them and send remote commands."
+        # The TV's REST API (port 8001) is plain HTTP and its WebSocket (8002)
+        # presents a self-signed certificate. Both are local-network only.
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+
+  WandTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: WandTests
+    dependencies:
+      - target: Wand
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.sachi.wand.tests
+        GENERATE_INFOPLIST_FILE: YES
+
+schemes:
+  Wand:
+    build:
+      targets:
+        Wand: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - WandTests

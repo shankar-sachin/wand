@@ -1,0 +1,12 @@
+// Local build settings — machine-specific, not part of the project definition.
+//
+// Put your Apple Developer Team ID here to run Wand on a real iPhone. Find it in
+// Xcode › Settings › Accounts › (your Apple ID) › Manage Certificates, or at
+// developer.apple.com/account under Membership. A free Apple ID works; its Team ID is
+// the 10-character string shown next to your name.
+//
+// This lives outside project.yml on purpose: `xcodegen generate` rewrites the Xcode
+// project from project.yml, so a team set through Xcode's Signing UI is wiped the next
+// time the project is regenerated. Set it here and it survives.
+
+// DEVELOPMENT_TEAM = ABCDE12345

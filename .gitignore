@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+
+# Xcode build output
+build/
+DerivedData/
+*.xcuserstate
+
+# Xcode user-specific data
+xcuserdata/
+
+# Generated Xcode project (regenerate with `xcodegen generate`)
+Wand.xcodeproj/
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Misc
+*.log
+*.ipa
+*.dSYM
